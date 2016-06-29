@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="compress\compressor.cpp">
+      <Filter>code\compressor</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\FastXml.cpp">
+      <Filter>code\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="canvas.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="colormanager.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="configmanager.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="customdialog.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="directoryman.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="filechecker.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="filemonitor.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="functionkey.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="ini.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="shellwindow.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="ui.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="utility.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="valueman.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="imageloader.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="ftp.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="ftpparse.c">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="toolbar.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="font.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+    <ClCompile Include="formatparser.cpp">
+      <Filter>code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="compress\compressor.h">
+      <Filter>code\compressor</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\FastXml.h">
+      <Filter>code\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml.h">
+      <Filter>code\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="canvas.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="colormanager.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="configmanager.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="customdialog.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="directoryman.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="filechecker.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="filemonitor.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="functionkey.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="ini.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="lock.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="predef.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="shellwindow.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="stringutil.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="trace.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="ui.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="utility.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="valueman.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="imageloader.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="ftp.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="ftpparse.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="toolbar.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="font.h">
+      <Filter>code</Filter>
+    </ClInclude>
+    <ClInclude Include="formatparser.h">
+      <Filter>code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="arrow.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="f1.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="f2.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="icon.ico">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="terminal.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="tortoisesvn-cleanup.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="tortoisesvn-commit.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="tortoisesvn-update.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="trash.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="zip.bmp">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="tortoisesvn-commit.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="tortoisesvn-update.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="icon_option.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="icon_explore.png">
+      <Filter>resource</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="속성변경.fbp">
+      <Filter>resource</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="resource">
+      <UniqueIdentifier>{c091b687-c937-468f-9e26-bd2ff687af62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code">
+      <UniqueIdentifier>{dccba48c-8c3f-4833-a410-21b929e86dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\compressor">
+      <UniqueIdentifier>{e14abc19-323b-4861-ae50-b092bfbbd145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\xml">
+      <UniqueIdentifier>{49345e4a-1957-4e5a-b9fb-a490d2ce3402}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="color.xml">
+      <Filter>resource</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>

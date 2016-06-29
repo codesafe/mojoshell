@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F8FF9DDD-E40B-4903-A1B3-2ECE15923E2F}</ProjectGuid>
+    <RootNamespace>mojoshell</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../wxWidgets/include;../../wxWidgets/include/msvc;../../wxWidgets/lib/vc_lib/mswd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4995;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../../wxWidgets/lib/vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)\$(TargetFileName) $(SolutionDir)$(TargetFileName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../wxWidgets/include;../../wxWidgets/include/msvc;../../wxWidgets/lib/vc_lib/mswd;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4995</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>../../wxWidgets/lib/vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <UACUIAccess>false</UACUIAccess>
+      <EnableUAC>true</EnableUAC>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)\$(TargetFileName) $(SolutionDir)$(TargetFileName)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="속성변경.fbp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="arrow.bmp" />
+    <Image Include="f1.bmp" />
+    <Image Include="f2.bmp" />
+    <Image Include="icon.ico" />
+    <Image Include="icon_explore.png" />
+    <Image Include="icon_option.png" />
+    <Image Include="terminal.bmp" />
+    <Image Include="tortoisesvn-cleanup.bmp" />
+    <Image Include="tortoisesvn-commit.bmp" />
+    <Image Include="tortoisesvn-commit.png" />
+    <Image Include="tortoisesvn-update.bmp" />
+    <Image Include="tortoisesvn-update.png" />
+    <Image Include="trash.bmp" />
+    <Image Include="zip.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="canvas.cpp" />
+    <ClCompile Include="colormanager.cpp" />
+    <ClCompile Include="compress\compressor.cpp" />
+    <ClCompile Include="configmanager.cpp" />
+    <ClCompile Include="customdialog.cpp" />
+    <ClCompile Include="directoryman.cpp" />
+    <ClCompile Include="filechecker.cpp" />
+    <ClCompile Include="filemonitor.cpp" />
+    <ClCompile Include="font.cpp" />
+    <ClCompile Include="formatparser.cpp" />
+    <ClCompile Include="ftp.cpp" />
+    <ClCompile Include="ftpparse.c" />
+    <ClCompile Include="functionkey.cpp" />
+    <ClCompile Include="imageloader.cpp" />
+    <ClCompile Include="ini.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="shellwindow.cpp" />
+    <ClCompile Include="toolbar.cpp" />
+    <ClCompile Include="ui.cpp" />
+    <ClCompile Include="utility.cpp" />
+    <ClCompile Include="valueman.cpp" />
+    <ClCompile Include="xml\FastXml.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="canvas.h" />
+    <ClInclude Include="colormanager.h" />
+    <ClInclude Include="compress\compressor.h" />
+    <ClInclude Include="configmanager.h" />
+    <ClInclude Include="customdialog.h" />
+    <ClInclude Include="directoryman.h" />
+    <ClInclude Include="filechecker.h" />
+    <ClInclude Include="filemonitor.h" />
+    <ClInclude Include="font.h" />
+    <ClInclude Include="formatparser.h" />
+    <ClInclude Include="ftp.h" />
+    <ClInclude Include="ftpparse.h" />
+    <ClInclude Include="functionkey.h" />
+    <ClInclude Include="imageloader.h" />
+    <ClInclude Include="ini.h" />
+    <ClInclude Include="lock.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="predef.h" />
+    <ClInclude Include="shellwindow.h" />
+    <ClInclude Include="stringutil.h" />
+    <ClInclude Include="toolbar.h" />
+    <ClInclude Include="trace.h" />
+    <ClInclude Include="ui.h" />
+    <ClInclude Include="utility.h" />
+    <ClInclude Include="valueman.h" />
+    <ClInclude Include="xml\FastXml.h" />
+    <ClInclude Include="xml\xml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="color.xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
