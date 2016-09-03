@@ -210,6 +210,7 @@ void	CDirectoryManager::CollectDriveinfo()
 		charDrvCF=fhCheck.c_str();
 		charDrv = (wchar*)drvSpc.c_str();      
 		
+/*
 		hDevice=CreateFile(charDrvCF,
 			GENERIC_READ|GENERIC_WRITE,
 			FILE_SHARE_READ|FILE_SHARE_WRITE,
@@ -217,8 +218,9 @@ void	CDirectoryManager::CollectDriveinfo()
 			OPEN_EXISTING,
 			0,
 			NULL);
+			*/
 
-		if(hDevice!=INVALID_HANDLE_VALUE)
+		//if(hDevice!=INVALID_HANDLE_VALUE)
 		{
 			wchar buffer[256] ={0,};
 			BOOL ret = GetVolumeInformation(charDrv, buffer, 256, NULL, NULL, NULL,NULL,NULL	);
