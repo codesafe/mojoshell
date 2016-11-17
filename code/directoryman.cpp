@@ -188,7 +188,7 @@ void	CDirectoryManager::CollectDriveinfo()
 {
 	m_driveinfolist.clear();
 
-	HANDLE hDevice = NULL;
+	//HANDLE hDevice = NULL;
 	HANDLE fileFind = NULL;
 
 	// 드라이브 정보 얻기
@@ -210,15 +210,9 @@ void	CDirectoryManager::CollectDriveinfo()
 		charDrvCF=fhCheck.c_str();
 		charDrv = (wchar*)drvSpc.c_str();      
 		
-		hDevice=CreateFile(charDrvCF,
-			GENERIC_READ|GENERIC_WRITE,
-			FILE_SHARE_READ|FILE_SHARE_WRITE,
-			NULL,
-			OPEN_EXISTING,
-			0,
-			NULL);
+		//hDevice = CreateFile(charDrvCF, GENERIC_READ|GENERIC_WRITE, FILE_SHARE_READ|FILE_SHARE_WRITE,  NULL, OPEN_EXISTING, 0, NULL);
 
-		if(hDevice!=INVALID_HANDLE_VALUE)
+		//if(hDevice!=INVALID_HANDLE_VALUE)
 		{
 			wchar buffer[256] ={0,};
 			BOOL ret = GetVolumeInformation(charDrv, buffer, 256, NULL, NULL, NULL,NULL,NULL	);
@@ -311,7 +305,7 @@ void	CDirectoryManager::CollectDriveinfo()
 			}
 		}
 
-		CloseHandle(hDevice);
+		//CloseHandle(hDevice);
 		drv++;
 	}
 	
@@ -1355,7 +1349,7 @@ void	CDirectoryManager::DrawFileinfo(wxPoint p, wxSize size, Canvas *canvas)
 			attribute += m_finalresult[m_selectedpos].m_attribute & ATTR_SYSTEM ? L"S" : L".";
 
 			FILETIME lft;  
-			FileTimeToLocalFileTime(&m_finalresult[m_selectedpos].m_creationtime, &lft);   // 로컬파일타임으로 조정
+			FileTimeToLocalFileTime(&m_finalresult[m_selectedpos].m_LastAccessTime, &lft);   // 로컬파일타임으로 조정
 
 			SYSTEMTIME st;
 			FileTimeToSystemTime(&lft, &st);
