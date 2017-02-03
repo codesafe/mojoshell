@@ -538,6 +538,7 @@ namespace utility
 			return false;
 		if (SUCCEEDED(imenu->QueryContextMenu(hMenu, 0, 1, 0x7FFF, CMF_NORMAL)))
 		{
+			SetForegroundWindow(parentWindow);
 			int iCmd = TrackPopupMenuEx(hMenu, TPM_RETURNCMD, xPos, yPos, parentWindow, NULL);
 			if (iCmd > 0)
 			{
