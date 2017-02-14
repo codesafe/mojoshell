@@ -334,10 +334,14 @@ void	CDirectoryManager::CollectDriveinfo()
 		SavePathinfo();
 
 	std::wstring drivestr = std::wstring(L"LASTDRIVE") + ( whatwindow == _LEFT_WINDOW ? L"_LEFT" : L"_RIGHT");
-	const wchar *lastdrive = pathinfo_ini->GetString(drivestr.c_str());
+	const wchar *_lastdrive = pathinfo_ini->GetString(drivestr.c_str());
+	String lastdrive;
 
-	lastdrive = CheckValidDirectory(String(lastdrive));
-	if( lastdrive )
+	if(_lastdrive == NULL)
+		lastdrive = L"C:";
+
+	lastdrive = CheckValidDirectory(lastdrive);
+	if( lastdrive != "" )
 	{
 		m_currentDir = lastdrive;
 		pathinfo_ini->Set( drivestr.c_str(), m_currentDir.c_str());
