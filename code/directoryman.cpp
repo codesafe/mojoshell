@@ -1323,14 +1323,19 @@ void	CDirectoryManager::DrawFileinfo(wxPoint p, wxSize size, Canvas *canvas)
 		{
 			int dirselnum = 0;
 			int fileselnum = 0;
+			int totalselectedfilesize = 0;
+
 			for(int i=0; i<(int)m_finalresult.size(); i++)
 			{
 				if( m_finalresult[i].m_selected )
 				{
 					if( m_finalresult[i].m_type == TYPE_DIRECTORY) 
 						dirselnum++;
-					else if( m_finalresult[i].m_type == TYPE_FILE) 
+					else if (m_finalresult[i].m_type == TYPE_FILE)
+					{
 						fileselnum++;
+						totalselectedfilesize += m_finalresult[i].m_filesize;
+					}
 				}
 			}
 
@@ -1340,7 +1345,7 @@ void	CDirectoryManager::DrawFileinfo(wxPoint p, wxSize size, Canvas *canvas)
 				if( dirselnum > 0 )
 					str = unicode::format(L"폴더 %d ", dirselnum);
 				if( fileselnum > 0 )
-					str += unicode::format(L"파일 %d ", fileselnum);
+					str += unicode::format(L"파일 %d(%s) ", fileselnum, utility::getStringSize(totalselectedfilesize,0,true).c_str());
 				str += L"선택됨";
 
 				helplist.push_back( str );

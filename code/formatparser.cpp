@@ -1,5 +1,6 @@
 ﻿#include "formatparser.h"
 
+#define	BUF		512
 FFPasrer *	FFPasrer::instance = NULL;
 
 struct FORMATDATA
@@ -27,7 +28,6 @@ FORMATDATA fformat[] =
 _FFINFO FFPasrer::parseFile(const wchar *filename)
 {
 	_FFINFO info;
-	const int BUF = 256;
 	char inbuf[BUF];
 
 	FILE *fp = NULL;
@@ -143,10 +143,32 @@ int FFPasrer::analizeformat(unsigned char *buf, int &width, int &height)
 
 				case FF_JPG :
 					{
-						// 0xA5 : 2 byte --> width
-						// 0xA3 : 2 byte --> height
-						width = (buf[0xA5] << 8) + buf[0xA6];
-						height = (buf[0xA3] << 8) + buf[0xA4];
+						int position = -1;
+						for (int i = 0; i < BUF-1; i++)
+						{
+							if (buf[i] == 0xFF && buf[i + 1] == 0xC0)
+							{
+								position = i;
+								break;
+							}
+						}
+
+						if (position > 0)
+						{
+							position = position + 5;
+							height = buf[position] << 8 | buf[position + 1];
+							width = buf[position + 2] << 8 | buf[position + 3];
+						}
+						else
+						{
+							width = 0;
+							height = 0;
+						}
+
+// 						// 0xA5 : 2 byte --> width
+// 						// 0xA3 : 2 byte --> height
+// 						width = (buf[0xA5] << 8) + buf[0xA6];
+// 						height = (buf[0xA3] << 8) + buf[0xA4];
 					}
 					break;
 
@@ -155,8 +177,10 @@ int FFPasrer::analizeformat(unsigned char *buf, int &width, int &height)
 						// byte order 바뀜
 						// 0x10 : 4 byte --> width
 						// 0x14 : 4 byte --> height
-						width = (buf[0x10] << 24) + (buf[0x11] << 16) + (buf[0x12] << 8) + (buf[0x13]);
-						height = (buf[0x14] << 24) + (buf[0x15] << 16) + (buf[0x16] << 8) + (buf[0x17]);
+// 						width = (buf[0x10] << 24) + (buf[0x11] << 16) + (buf[0x12] << 8) + (buf[0x13]);
+// 						height = (buf[0x14] << 24) + (buf[0x15] << 16) + (buf[0x16] << 8) + (buf[0x17]);
+						width = (buf[16] << 24) + (buf[17] << 16) + (buf[18] << 8) + (buf[19]);
+						height = (buf[20] << 24) + (buf[21] << 16) + (buf[22] << 8) + (buf[23]);
 					}
 					break;
 			}
