@@ -1764,8 +1764,10 @@ void	CDirectoryManager::Deletefile(bool recyclebin)
 		bool ret = DeleteDirectory(m_finalresult[m_selectedpos].m_fullpath.c_str(), &dialog, recyclebin, totalnum, progress);
 		dialog.Update(L"path", m_finalresult[m_selectedpos].m_fullpath);
 
-		if( ret )
-			utility::removedirectoty(m_finalresult[m_selectedpos].m_fullpath.c_str(), recyclebin);
+		if (ret)
+		{
+			bool delret = utility::removedirectoty(m_finalresult[m_selectedpos].m_fullpath.c_str(), recyclebin);
+		}
 
 //		_wrmdir(m_finalresult[m_selectedpos].m_fullpath.c_str());
 		dialog.Destroy();

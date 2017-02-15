@@ -245,6 +245,12 @@ namespace utility
 	}
 
 	//////////////////////////////////////////////////////////////////////////
+	static void changeAttiribute(const wchar *path, unsigned long att)
+	{
+		unsigned long attribute = att;
+		SetFileAttributes(path, attribute);
+	}
+
 	// 소스 , 타겟폴더, 새이름
 	static bool	copyfile(const wchar *path, const wchar *newdir, const wchar *newname )
 	{
@@ -336,6 +342,13 @@ namespace utility
 		}
 		else
 		{
+			unsigned long attribute = GetPathAttribute(path);
+			if (attribute & ATTR_READONLY)
+			{
+				attribute = attribute ^ ATTR_READONLY;
+				utility::changeAttiribute(path, attribute);
+			}
+
 			BOOL ret = DeleteFile(path);
 			return ret ? true : false;
 			//int ret = _wremove(path);
@@ -396,11 +409,6 @@ namespace utility
 		return ret;
 	}
 
-	static void changeAttiribute(const wchar *path, unsigned long att)
-	{
-		unsigned long attribute = att;
-		SetFileAttributes(path, attribute);
-	}
 
 	//////////////////////////////////////////////////////////////////////////
 
