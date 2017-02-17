@@ -1325,7 +1325,7 @@ void	CDirectoryManager::DrawFileinfo(wxPoint p, wxSize size, Canvas *canvas)
 		{
 			int dirselnum = 0;
 			int fileselnum = 0;
-			int totalselectedfilesize = 0;
+			__int64 totalselectedfilesize = 0;
 
 			for(int i=0; i<(int)m_finalresult.size(); i++)
 			{
