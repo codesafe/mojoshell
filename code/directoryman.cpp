@@ -339,6 +339,8 @@ void	CDirectoryManager::CollectDriveinfo()
 
 	if(_lastdrive == NULL)
 		lastdrive = L"C:";
+	else
+		lastdrive = _lastdrive;
 
 	lastdrive = CheckValidDirectory(lastdrive);
 	if( lastdrive != "" )

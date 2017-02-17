@@ -17,6 +17,7 @@
 #include "lock.h"
 //#include "./zip/zip.h"
 #include "canvas.h"
+#include "trace.h"
 
 namespace utility
 {
@@ -350,6 +351,12 @@ namespace utility
 			}
 
 			BOOL ret = DeleteFile(path);
+			if (ret == 0)
+			{
+				DWORD errorcode = GetLastError();
+				_TRACE(L"%d\n", errorcode);
+			}
+
 			return ret ? true : false;
 			//int ret = _wremove(path);
 			//return (ret == 0) ? false : true;
