@@ -21,6 +21,11 @@ struct _FFINFO
 	int fileid;
 	int width;
 	int height;
+	_FFINFO()
+	{
+		width = 0;
+		height = 0;
+	}
 };
 
 class FFPasrer
