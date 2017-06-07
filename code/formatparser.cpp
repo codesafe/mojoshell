@@ -52,6 +52,7 @@ _FFINFO FFPasrer::parseFile(const wchar *filename)
 				info.width = width;
 				info.height = height;
 			}
+			fclose(fp);
 		}
 		else
 		{
