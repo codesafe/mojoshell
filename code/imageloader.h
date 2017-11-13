@@ -26,6 +26,8 @@ public:
 	int		getImageHeight();
 	void	renderimage(wxPoint p, wxSize size, Canvas *c);
 
+	bool	enableshowext(String ext);
+
 	HANDLE	handle[2];
 
 private :

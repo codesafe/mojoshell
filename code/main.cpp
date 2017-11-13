@@ -268,7 +268,8 @@ m_backBuffer(NULL)
 	SetPosition(m_windowpos);
 	//SetIcon(wxICON(mondrian));
 
-	mainHwhd = wxWindow::GetHWND();
+	//mainHwhd = wxWindow::GetHWND();
+	mainHwhd = this->GetHWND();
 	leftmousedown = false;
 
 //	DragAcceptFiles(true);

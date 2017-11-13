@@ -1,13 +1,12 @@
-﻿#include "imageloader.h"
+﻿
+#include "predef.h"
+#include "imageloader.h"
 #include "stringutil.h"
 #include "utility.h"
 
-
 #include <process.h>
 
-
 ImageLoader*	ImageLoader::instance = NULL;
-
 
 ImageLoader::ImageLoader()
 {
@@ -147,8 +146,9 @@ void	ImageLoader::Close()
 void	ImageLoader::Reset()
 {
 	// Image off
-	loadedfile.clear();
+	if (loadedfile.empty()) return;
 
+	loadedfile.clear();
 	lock.Enter();
 	if( bitmap )
 	{
@@ -159,11 +159,22 @@ void	ImageLoader::Reset()
 	lock.Leave();
 }
 
+bool	ImageLoader::enableshowext(String ext)
+{
+	for (int i = 0; i < _countof(imageext); i++)
+	{
+		if (imageext[i] == ext) return true;
+	}
+
+	return false;
+}
+
 void	ImageLoader::LoadImage(String file)
 {
 	String ext = utility::GetExtention(file.c_str());
 	unicode::Upper(ext);
-	if( ext == L".BMP" || ext == L".PNG" || ext == L".TGA" || ext == L".JPG" || ext == L".JPEG" || ext == L".PCX" || ext == L".GIF" || ext == L".XPM" || ext == L".ICO")
+	//if( ext == L".BMP" || ext == L".PNG" || ext == L".TGA" || ext == L".JPG" || ext == L".JPEG" || ext == L".PCX" || ext == L".GIF" || ext == L".XPM" || ext == L".ICO")
+	if(enableshowext(ext))
 	{
 		loadedfile = file;
 		SetEvent(handle[0]);	// LOAD

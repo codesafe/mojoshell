@@ -527,8 +527,76 @@ namespace utility
 		return ret;
 	}
 
+	static BOOL ShowContextMenu(PIDLIST_ABSOLUTE pidlAbsolute, HWND hwnd)
+	{
+		int                 nId;
+		HRESULT             hr;
+		POINT               pt;
+		HMENU               hmenuPopup;
+		IContextMenu        *pContextMenu;
+		IShellFolder        *pShellFolder;
+		PITEMID_CHILD       pidlChild;
+		CMINVOKECOMMANDINFO ici;
+
+// 		LPITEMIDLIST        pidlItem = NULL;
+// 		SHGetSpecialFolderLocation(NULL, CSIDL_DRIVES, &pidlItem);
+// 
+// 		pidlAbsolute = pidlItem;
+		SHBindToParent(pidlAbsolute, IID_PPV_ARGS(&pShellFolder), NULL);
+		pidlChild = ILFindLastID(pidlAbsolute);
+
+		hr = pShellFolder->GetUIObjectOf(NULL, 1, (LPCITEMIDLIST *)&pidlChild, IID_IContextMenu, NULL, (void **)&pContextMenu);
+		if (hr != S_OK) {
+			pShellFolder->Release();
+			return FALSE;
+		}
+
+		hmenuPopup = CreatePopupMenu();
+		pContextMenu->QueryContextMenu(hmenuPopup, 0, 1, 0x7fff, CMF_NORMAL);
+
+		GetCursorPos(&pt);
+		nId = TrackPopupMenu(hmenuPopup, TPM_RETURNCMD, pt.x, pt.y, 0, hwnd, NULL);
+		if (nId == 0) {
+			pContextMenu->Release();
+			pShellFolder->Release();
+			return FALSE;
+		}
+
+		ici.cbSize = sizeof(CMINVOKECOMMANDINFO);
+		ici.fMask = 0;
+		ici.hwnd = hwnd;
+		ici.lpVerb = (LPCSTR)MAKEINTRESOURCE(nId - 1);
+		ici.lpParameters = NULL;
+		ici.lpDirectory = NULL;
+		ici.nShow = SW_SHOW;
+
+		hr = pContextMenu->InvokeCommand(&ici);
+
+		pContextMenu->Release();
+		pShellFolder->Release();
+
+		return hr == S_OK;
+	}
+
 	static bool openShellContextMenuForObject(String &path, int xPos, int yPos, HWND parentWindow)
 	{
+		PIDLIST_ABSOLUTE pidlAbsolute;
+		ITEMIDLIST * id = 0;
+
+		std::wstring windowsPath = path;
+		std::replace(windowsPath.begin(), windowsPath.end(), '/', '\\');
+
+		SFGAOF out;
+		HRESULT result = SHParseDisplayName(windowsPath.c_str(), NULL, &id, SFGAO_FILESYSTEM, &out);
+
+ 		//HRESULT result = SHParseDisplayName(windowsPath.c_str(), 0, &id, 0, 0);
+ 		if (!SUCCEEDED(result) || !id)
+ 			return false;
+ 		pidlAbsolute = (PIDLIST_ABSOLUTE)id;
+		ShowContextMenu(pidlAbsolute, parentWindow);
+
+
+/*
 		ITEMIDLIST * id = 0;
 		std::wstring windowsPath = path;
 		std::replace(windowsPath.begin(), windowsPath.end(), '/', '\\');
@@ -551,7 +619,8 @@ namespace utility
 		HMENU hMenu = CreatePopupMenu();
 		if (!hMenu)
 			return false;
-		if (SUCCEEDED(imenu->QueryContextMenu(hMenu, 0, 1, 0x7FFF, CMF_NORMAL)))
+
+		if (SUCCEEDED(imenu->QueryContextMenu(hMenu, 0, 1, 0x7FFF, CMF_EXPLORE)))
 		{
 			SetForegroundWindow(parentWindow);
 			int iCmd = TrackPopupMenuEx(hMenu, TPM_RETURNCMD, xPos, yPos, parentWindow, NULL);
@@ -568,6 +637,7 @@ namespace utility
 			}
 		}
 		DestroyMenu(hMenu);
+*/
 		return true;
 	}
 

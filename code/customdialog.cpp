@@ -1857,14 +1857,19 @@ bool	DeleteDialog::IsCancel()
 
 SVNDialog::SVNDialog( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
 {
+	ConfigManager::GetInstance()->GetSVN(svninfo);
+
 	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 	
 	wxBoxSizer* bSizer38;
 	bSizer38 = new wxBoxSizer( wxVERTICAL );
 	
+
+/*
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer( wxVERTICAL );
 	
+
 	wxBoxSizer* bSizer55;
 	bSizer55 = new wxBoxSizer( wxHORIZONTAL );
 	
@@ -1880,23 +1885,54 @@ SVNDialog::SVNDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	bSizer54->Add( bSizer55, 0, wxALL|wxEXPAND, 5 );
 	
-	
 	bSizer38->Add( bSizer54, 0, wxEXPAND, 5 );
-	
+*/
+
+
 	wxStaticBoxSizer* sbSizer3;
 	sbSizer3 = new wxStaticBoxSizer( new wxStaticBox( this, wxID_ANY, wxEmptyString ), wxVERTICAL );
 	
-	wxBoxSizer* bSizer40;
-	bSizer40 = new wxBoxSizer( wxHORIZONTAL );
-	
-	m_svn_update = new wxBitmapButton( this, ID_SVN_UPDATE, wxBitmap( wxT("tortoisesvn-update.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxSize( 100,100 ), wxBU_AUTODRAW );
-	
-	m_svn_update->SetBitmapDisabled( wxBitmap( wxT("tortoisesvn-update.bmp"), wxBITMAP_TYPE_ANY ) );
-	m_svn_update->SetBitmapSelected( wxBitmap( wxT("tortoisesvn-update.bmp"), wxBITMAP_TYPE_ANY ) );
-	m_svn_update->SetBitmapFocus( wxBitmap( wxT("tortoisesvn-update.bmp"), wxBITMAP_TYPE_ANY ) );
-	m_svn_update->SetBitmapHover( wxBitmap( wxT("tortoisesvn-update.bmp"), wxBITMAP_TYPE_ANY ) );
-	bSizer40->Add( m_svn_update, 0, wxALL, 5 );
-	
+
+	for (size_t i = 0; i < svninfo.size(); i++)
+	{
+		wxBoxSizer* bSizer40;
+		bSizer40 = new wxBoxSizer(wxHORIZONTAL);
+
+		wxStaticText *title = new wxStaticText(this, wxID_ANY, svninfo[i].name, wxDefaultPosition, wxDefaultSize, 0);
+		bSizer40->Add(title, wxALIGN_CENTER_VERTICAL, wxALL, 5);
+
+		wxPoint pos(0, i*65);
+		m_svn_update[i] = new wxBitmapButton(this, ID_SVN_UPDATE+i, wxBitmap(wxT("tortoisesvn-update_small.bmp"), wxBITMAP_TYPE_ANY), wxDefaultPosition, wxSize(80, 60), wxBU_AUTODRAW);
+		m_svn_update[i]->SetBitmapDisabled(wxBitmap(wxT("tortoisesvn-update_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_update[i]->SetBitmapSelected(wxBitmap(wxT("tortoisesvn-update_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_update[i]->SetBitmapFocus(wxBitmap(wxT("tortoisesvn-update_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_update[i]->SetBitmapHover(wxBitmap(wxT("tortoisesvn-update_small.bmp"), wxBITMAP_TYPE_ANY));
+		bSizer40->Add(m_svn_update[i], 0, wxALL, 5);
+
+		m_svn_commit[i] = new wxBitmapButton(this, ID_SVN_COMMIT+i, wxBitmap(wxT("tortoisesvn-commit_small.bmp"), wxBITMAP_TYPE_ANY), wxDefaultPosition, wxSize(80, 60), wxBU_AUTODRAW);
+		m_svn_commit[i]->SetBitmapDisabled(wxBitmap(wxT("tortoisesvn-commit_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_commit[i]->SetBitmapSelected(wxBitmap(wxT("tortoisesvn-commit_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_commit[i]->SetBitmapFocus(wxBitmap(wxT("tortoisesvn-commit_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_commit[i]->SetBitmapHover(wxBitmap(wxT("tortoisesvn-commit_small.bmp"), wxBITMAP_TYPE_ANY));
+		bSizer40->Add(m_svn_commit[i], 0, wxALL, 5);
+
+		m_svn_cleanup[i] = new wxBitmapButton(this, ID_SVN_CLEANUP+i, wxBitmap(wxT("tortoisesvn-cleanup_small.bmp"), wxBITMAP_TYPE_ANY), wxDefaultPosition, wxSize(80, 60), wxBU_AUTODRAW);
+		m_svn_cleanup[i]->SetBitmapDisabled(wxBitmap(wxT("tortoisesvn-cleanup_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_cleanup[i]->SetBitmapSelected(wxBitmap(wxT("tortoisesvn-cleanup_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_cleanup[i]->SetBitmapFocus(wxBitmap(wxT("tortoisesvn-cleanup_small.bmp"), wxBITMAP_TYPE_ANY));
+		m_svn_cleanup[i]->SetBitmapHover(wxBitmap(wxT("tortoisesvn-cleanup_small.bmp"), wxBITMAP_TYPE_ANY));
+		bSizer40->Add(m_svn_cleanup[i], 0, wxALL, 5);
+
+		sbSizer3->Add(bSizer40, 1, wxEXPAND, 5);
+
+		Connect(ID_SVN_UPDATE + i, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(SVNDialog::OnCommand));
+		Connect(ID_SVN_COMMIT + i, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(SVNDialog::OnCommand));
+		Connect(ID_SVN_CLEANUP + i, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(SVNDialog::OnCommand));
+	}
+
+
+/*
+
 	m_svn_commit = new wxBitmapButton( this, ID_SVN_COMMIT, wxBitmap( wxT("tortoisesvn-commit.bmp"), wxBITMAP_TYPE_ANY ), wxDefaultPosition, wxSize( 100,100 ), wxBU_AUTODRAW );
 	
 	m_svn_commit->SetBitmapDisabled( wxBitmap( wxT("tortoisesvn-commit.bmp"), wxBITMAP_TYPE_ANY ) );
@@ -1911,12 +1947,9 @@ SVNDialog::SVNDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_svn_cleanup->SetBitmapSelected( wxBitmap( wxT("tortoisesvn-cleanup.bmp"), wxBITMAP_TYPE_ANY ) );
 	m_svn_cleanup->SetBitmapFocus( wxBitmap( wxT("tortoisesvn-cleanup.bmp"), wxBITMAP_TYPE_ANY ) );
 	m_svn_cleanup->SetBitmapHover( wxBitmap( wxT("tortoisesvn-cleanup.bmp"), wxBITMAP_TYPE_ANY ) );
-	bSizer40->Add( m_svn_cleanup, 0, wxALL, 5 );
+	bSizer40->Add( m_svn_cleanup, 0, wxALL, 5 );*/
 	
-	
-	sbSizer3->Add( bSizer40, 1, wxEXPAND, 5 );
-	
-	
+
 	bSizer38->Add( sbSizer3, 0, wxALL, 5 );
 	
 	wxBoxSizer* bSizer42;
@@ -1934,17 +1967,14 @@ SVNDialog::SVNDialog( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	this->Centre( wxBOTH );
 
-	Connect(ID_SVN_UPDATE, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(SVNDialog::OnCommand));
-	Connect(ID_SVN_COMMIT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(SVNDialog::OnCommand));
-	Connect(ID_SVN_CLEANUP, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(SVNDialog::OnCommand));
 	Connect(wxID_CANCEL, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(SVNDialog::OnClose));
 
-	ConfigManager::GetInstance()->GetSVN(svninfo);
-	for (size_t i=0;i<svninfo.size(); i++)
-	{
-		m_choice2->Append(svninfo[i].name);
-	}
-	m_choice2->SetSelection( 0 );
+
+// 	for (size_t i=0;i<svninfo.size(); i++)
+// 	{
+// 		m_choice2->Append(svninfo[i].name);
+// 	}
+// 	m_choice2->SetSelection( 0 );
 }
 
 SVNDialog::~SVNDialog()
@@ -1954,12 +1984,14 @@ SVNDialog::~SVNDialog()
 // SVN 실행
 void	SVNDialog::OnCommand(wxCommandEvent & event)
 {
-	int selectedsvn = m_choice2->GetSelection();
+// 	int selectedsvn = m_choice2->GetSelection();
+// 	if( selectedsvn >= (int)svninfo.size() )
+// 		return;
 
-	if( selectedsvn >= (int)svninfo.size() )
-		return;
+	int _id = event.GetId();
+	int id = (_id / 1000 * 1000) + ((_id %1000)/100*100) + ((_id % 100) / 10 * 10);
+	int selectedsvn = (_id % id);
 
-	int id = event.GetId();
 	if(id == ID_SVN_UPDATE) 
 	{
 		// update

@@ -120,6 +120,8 @@ struct  FILEINFO
 };
 
 const String functioncommand[] = { L"$(DRIVE)" , L"$(DIR)" , L"$(FULLPATH)", L"$(FILENAME)" };
+const String imageext[] = { L".BMP", L".PNG", L".TGA", L".JPG", L".JPEG", L".PCX", L".GIF", L".XPM", L".ICO" };
+
 
 #define ARCHIVE_ZIP		0
 #define ARCHIVE_7Z		1

@@ -557,6 +557,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 
+#define  MAX_BTN	5
 
 class SVNDialog : public wxDialog 
 {
@@ -565,9 +566,9 @@ private:
 protected:
 		wxStaticText* m_staticText27;
 		wxChoice* m_choice2;
-		wxBitmapButton* m_svn_update;
-		wxBitmapButton* m_svn_commit;
-		wxBitmapButton* m_svn_cleanup;
+		wxBitmapButton* m_svn_update[MAX_BTN];
+		wxBitmapButton* m_svn_commit[MAX_BTN];
+		wxBitmapButton* m_svn_cleanup[MAX_BTN];
 		wxButton* m_cancel;
 
 public:
