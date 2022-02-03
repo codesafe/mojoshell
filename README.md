@@ -1,4 +1,4 @@
-# mojoshell
+# mojo shell
 
 Clone of MDIR
 
